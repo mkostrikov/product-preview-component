@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Mentor | Product preview card component</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 10px;
+        }
+
+        :root {
+            --pure-white: #fff;
+            --cream-bg: #f2eae2;
+            --aurometal-saurus: #6c7289;
+            --deep-aquamarine: #3d8168;
+            --deep-aquamarine-hover: #1a4032;
+            --gunmetal: #1c232b;
+            --font-fraunces-bold: "Fraunces Bold";
+            --font-montserrat-medium: "Fraunces Medium";
+            --font-montserrat-bold: "Fraunces Bold";
+        }
+
+        @font-face {
+            font-family: 'Fraunces Bold';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/fraunces/v31/6NUu8FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0K7iN7iQcIfJD58njU0oc7qv8oRcTn.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        @font-face {
+            font-family: 'Montserrat Medium';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtZ6Hw5aXp-obK4.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        @font-face {
+            font-family: 'Montserrat Bold';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM73w5aXp-obK4.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        .main {
+            min-block-size: 100dvh;
+            padding: 2.8rem 1.6rem;
+            display: grid;
+            place-items: center;
+            background: var(--cream-bg);
+        }
+
+        .card {
+            display: grid;
+            grid-template-columns: 34.3rem;
+        }
+
+        .card__image {
+            background: var(--pure-white);
+        }
+
+        .card__image > img {
+            max-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-start-start-radius: 1rem;
+            border-start-end-radius: 1rem;
+        }
+
+        .card__content {
+            padding: 2.4rem;
+        }
+
+        .card__category {
+            margin-block-end: 1.2rem;
+            font-family: var(--font-montserrat-medium);
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: 0.42em;
+            color: var(--aurometal-saurus);
+        }
+
+        .card__title {
+            margin-block-end: 1.6rem;
+            font-family: var(--font-fraunces-bold);
+            font-weight: 700;
+            font-size: 3.2rem;
+            line-height: 1;
+            color: var(--gunmetal);
+        }
+
+        .card__description {
+            margin-block-end: 2.4rem;
+            font-family: var(--font-montserrat-medium);
+            font-weight: 500;
+            font-size: 1.4rem;
+            line-height: 1.64;
+            color: var(--aurometal-saurus);
+        }
+
+        .card__price {
+            margin-block-end: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.9rem;
+        }
+
+
+        .card__actual-price {
+            font-family: var(--font-fraunces-bold);
+            font-weight: 700;
+            font-size: 3.2rem;
+            line-height: 1;
+            color: var(--deep-aquamarine);
+        }
+
+        .card__old-price {
+            font-family: var(--font-montserrat-medium);
+            font-weight: 500;
+            font-size: 1.3rem;
+            line-height: 1.77;
+            text-decoration: line-through;
+            color: var(--aurometal-saurus);
+        }
+
+        .card__button {
+            width: 100%;
+            padding: 1.6rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-family: var(--font-montserrat-medium);
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--pure-white);
+            background-color: var(--deep-aquamarine);
+            border-radius: 0.8rem;
+            border: none;
+        }
+
+        @media (hover: hover) {
+            .card__button:hover {
+                background-color: var(--deep-aquamarine-hover);
+            }
+        }
+
+        @media (hover: none) {
+            .card__button:active {
+                background-color: var(--deep-aquamarine-hover);
+            }
+        }
+
+        @media (min-width: 632px) {
+            .card {
+                grid-template-columns: repeat(2, 30rem);
+            }
+
+            .card__image > img {
+                border-radius: initial;
+                border-start-start-radius: 1rem;
+                border-end-start-radius: 1rem;
+            }
+
+            .card__content {
+                padding: 3.2rem;
+            }
+
+            .card__category {
+                margin-block-end: 2rem;
+            }
+
+            .card__title {
+                margin-block-end: 2.4rem;
+            }
+
+            .card__description {
+                margin-block-end: 2.9rem;
+            }
+
+            .card__price {
+                margin-block-end: 3rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<main class="main">
+    <article class="card">
+        <picture class="card__image">
+            <source
+                    class="test"
+                    media="(min-width: 632px)"
+                    srcset="./images/image-product-desktop.jpg"
+                    width="600"
+                    height="900">
+            <img src="./images/image-product-mobile.jpg"
+                 alt="A bottle of gabrielle chanel perfume surrounded by green leaves"
+                 width="686"
+                 height="480"
+                 fetchpriority="high">
+        </picture>
+        <section class="card__content">
+            <p class="card__category">
+                PERFUME
+            </p>
+            <h2 class="card__title">
+                Gabrielle Essence Eau De Parfum
+            </h2>
+            <p class="card__description">
+                A floral, solar and voluptuous interpretation composed by Olivier Polge, Perfumer-Creator for the House
+                of CHANEL.
+            </p>
+            <p class="card__price">
+                    <span class="card__actual-price">
+                        $149.99
+                    </span>
+                <span class="card__old-price">
+                        $169.99
+                    </span>
+            </p>
+            <button class="card__button">
+                <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M12.8649 8.1664C13.7779 8.52626 14.3794 9.40635 14.3831 10.3878C14.381 11.2088 13.9589 11.9716 13.2644 12.4094C13.4723 12.7661 13.5825 13.1712 13.584 13.584C13.5914 14.5429 13.0268 15.4139 12.1485 15.7985C11.2701 16.1831 10.2471 16.0073 9.54753 15.3516C8.84795 14.6959 8.60643 13.6863 8.93348 12.785H7.0477C7.40887 13.78 7.07458 14.8942 6.22528 15.5261C5.37597 16.158 4.21274 16.158 3.36344 15.5261C2.51413 14.8942 2.17985 13.78 2.54101 12.785H1.59812C1.15681 12.785 0.799059 12.4272 0.799059 11.9859C0.799059 11.5446 1.15681 11.1868 1.59812 11.1868H11.9859C12.4272 11.1868 12.785 10.8291 12.785 10.3878C12.785 9.94648 12.4272 9.58873 11.9859 9.58873H3.76357C3.39211 9.60145 3.06093 9.35638 2.96451 8.99742L0.982843 1.59813H0V1.548e-05H1.59812C1.96072 -0.00157591 2.27893 0.241186 2.37321 0.591319L2.6369 1.59813H13.584C13.8259 1.59095 14.0581 1.69379 14.2153 1.87781C14.3692 2.07435 14.4224 2.33151 14.3591 2.57299L12.8649 8.1664ZM4.39483 7.99061H11.2587L12.5452 3.19625H3.06839L4.39483 7.99061ZM4.79436 14.3831C4.35305 14.3831 3.9953 14.0253 3.9953 13.584C3.9953 13.1427 4.35305 12.785 4.79436 12.785C5.23566 12.785 5.59342 13.1427 5.59342 13.584C5.59342 14.0253 5.23566 14.3831 4.79436 14.3831ZM10.3878 13.584C10.3878 14.0253 10.7455 14.3831 11.1868 14.3831C11.6281 14.3831 11.9859 14.0253 11.9859 13.584C11.9859 13.1427 11.6281 12.785 11.1868 12.785C10.7455 12.785 10.3878 13.1427 10.3878 13.584Z"
+                          fill="white"/>
+                </svg>
+                Add to Cart
+            </button>
+        </section>
+    </article>
+</main>
+</body>
+</html>
